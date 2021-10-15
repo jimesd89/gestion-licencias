@@ -1,0 +1,73 @@
+/* eslint-disable */
+export default [
+    {
+        cliente_id: "201",
+        cliente_nombre: "ACLISA",
+        fechaCorte: "13/04/2022",
+        ultimaConexion: "13/04/2022",
+        nuevaFechaCorte: "13/04/2022",
+      },
+      {
+        cliente_id: "202",
+        cliente_nombre: "Ariston - RED HI",
+        fechaCorte: "13/04/2022",
+        ultimaConexion: "13/04/2022",
+        nuevaFechaCorte: "13/04/2022",
+      },
+      {
+        cliente_id: "203",
+        cliente_nombre: "ASISTIR",
+        fechaCorte: "13/04/2022",
+        ultimaConexion: "13/04/2022",
+        nuevaFechaCorte: "13/04/2022",
+      },
+      {
+        cliente_id: "204",
+        cliente_nombre: "Bernal PMI",
+        fechaCorte: "13/04/2022",
+        ultimaConexion: "13/04/2022",
+        nuevaFechaCorte: "13/04/2022",
+      },
+      {
+        cliente_id: "205",
+        cliente_nombre: "CEGO - GENS",
+        fechaCorte: "13/04/2022",
+        ultimaConexion: "13/04/2022",
+        nuevaFechaCorte: "13/04/2022",
+      },
+      {
+        cliente_id: "206",
+        cliente_nombre: "CENESA S.A.",
+        fechaCorte: "13/04/2022",
+        ultimaConexion: "13/04/2022",
+        nuevaFechaCorte: "13/04/2022",
+      },
+      {
+        cliente_id: "207",
+        cliente_nombre: "Centro de Ojos Arroyo Seco - COAS",
+        fechaCorte: "13/04/2022",
+        ultimaConexion: "13/04/2022",
+        nuevaFechaCorte: "13/04/2022",
+      },
+      {
+        cliente_id: "208",
+        cliente_nombre: "Clínica Sucre",
+        fechaCorte: "13/04/2022",
+        ultimaConexion: "13/04/2022",
+        nuevaFechaCorte: "13/04/2022",
+      },
+      {
+        cliente_id: "209",
+        cliente_nombre: "Conci",
+        fechaCorte: "13/04/2022",
+        ultimaConexion: "13/04/2022",
+        nuevaFechaCorte: "13/04/2022",
+      },
+      {
+        cliente_id: "210",
+        cliente_nombre: "DASPU",
+        fechaCorte: "13/04/2022",
+        ultimaConexion: "13/04/2022",
+        nuevaFechaCorte: "13/04/2022",
+      },
+]
