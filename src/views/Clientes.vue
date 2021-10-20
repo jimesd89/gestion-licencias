@@ -17,7 +17,14 @@
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="green" dark class="mb-2" v-bind="attrs" v-on="on" @click="nuevoCliente">
+              <v-btn
+                color="green"
+                dark
+                class="mb-2"
+                v-bind="attrs"
+                v-on="on"
+                @click="nuevoCliente"
+              >
                 Nuevo cliente
               </v-btn>
             </template>
@@ -25,8 +32,10 @@
               <v-card-title>
                 <span class="text-h5">{{ formTitle }}</span>
               </v-card-title>
-            <app-cliente v-for="cliente in clientes" :key="cliente"></app-cliente>
-              
+              <app-cliente
+                v-for="cliente in clientes"
+                :key="cliente"
+              ></app-cliente>
 
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -57,40 +66,59 @@
             </v-card>
           </v-dialog>
         </v-toolbar>
-        
       </template>
-      <!--<v-tooltip bottom>-->
+      <!---->
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon small 
-                @click="deleteItem(item)"> 
-                 mdi-delete </v-icon>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon
+              small
+              class="mr-2"
+              @click="editItem(item)"
+              v-bind="attrs"
+              v-on="on"
+            >
+              mdi-pencil
+            </v-icon></template
+          ><span>Editar</span></v-tooltip
+        >
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon
+              small
+              class="mr-2"
+              @click="editItem(item)"
+              v-bind="attrs"
+              v-on="on"
+            >
+              mdi-delete
+            </v-icon></template
+          ><span>Eliminar</span></v-tooltip
+        >
       </template>
-      <!-- <span>Tooltip</span>
-    </v-tooltip>
-    -->
+
       <template v-slot:no-data>
         <v-btn color="primary" @click="initialize"> Resetear </v-btn>
       </template>
       <template v-slot:expanded-item="{ headers, item }">
         <td :colspan="headers.length">
-          Más información de {{ item.cliente_nombre }}
+          Más información de {{ item.cliente_nombre }}, fecha de corte:
+          {{ item.fechaCorte }}, nueva fecha de corte:
+          {{ item.nuevaFechaCorte }}
         </td>
       </template>
     </v-data-table>
-    
   </v-container>
-  
-
 </template>
 <!-- eslint-disable -->
 
 <script>
-import Cliente from './Cliente.vue';
-import {mapState} from 'vuex';
+import Cliente from "./Cliente.vue";
+//import {mapState} from 'vuex';
 export default {
-  components : {
-   appCliente: Cliente
+  components: {
+    appCliente: Cliente,
   },
   data() {
     return {
@@ -138,7 +166,6 @@ export default {
       return this.$store.dispatch('initClientes')
    }
    */
-  
   },
 
   watch: {
@@ -151,6 +178,7 @@ export default {
   },
 
   created() {
+    this.$store.dispatch("initClientes");
     this.initialize();
   },
 
@@ -158,23 +186,29 @@ export default {
     initialize() {
       this.clientes = [];
     },
-    
-    
+
     nuevoCliente() {
-     
-     this.$store.dispatch('agregarClientes');
-     
+      //this.$store.dispatch('agregarClientes');
+      const agregar = {
+        cliente_id: this.cliente_id,
+        cliente_nombre: this.cliente_nombre,
+        fechaCorte: this.fechaCorte,
+        ultimaConexion: this.ultimaConexion,
+        nuevaFechaCorte: this.nuevaFechaCorte,
+      };
+      console.log(agregar);
+      this.$store.dispatch("addCliente", agregar);
     },
 
     editItem(item) {
-      this.$sctore.dispatch('editarCliente',(item))
+      this.$sctore.dispatch("editarCliente", item);
       //this.editedIndex = this.clientes.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
-    deleteItem(item){
-      this.$store.dispatch('deleteItem', item);
+    deleteItem(item) {
+      this.$store.dispatch("deleteItem", item);
       this.dialogDelete = true;
     },
     /*
@@ -206,7 +240,7 @@ export default {
     },
 
     async save() {
-       await this.$store.dispatch('editarCliente',this.editedItem)
+      await this.$store.dispatch("editarCliente", this.editedItem);
       if (this.editedIndex > -1) {
         Object.assign(this.clientes[this.editedIndex], this.editedItem);
       } else {
@@ -215,7 +249,5 @@ export default {
       this.close();
     },
   },
- 
-}
-
+};
 </script>

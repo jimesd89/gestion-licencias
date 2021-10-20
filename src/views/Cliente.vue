@@ -41,10 +41,10 @@
 <script>
 export default {
   name: "Cliente",
-  methods: {
-    cliente() {
-      return this.$store.state.clientes
-    },
-  },
+  computed: {
+    clientes(){
+      return this.$store.getters.clientes
+    }
+  }
 };
 </script>

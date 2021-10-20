@@ -13,9 +13,9 @@
 export default {
   name: "App",
   
- /* created(){
-    this.$store.dispatch('initclientes')
-  }*/
+  created(){
+    this.$store.dispatch('initClientes')
+  }
 };
 </script>
 

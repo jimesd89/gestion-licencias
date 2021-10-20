@@ -38,11 +38,11 @@
       <router-link to="/licencias-clientes">
         <v-card-actions>
           <v-spacer></v-spacer>
-          
+
           <loading
             v-model="isLoading"
             :can-cancel="false"
-            :is-full-page=true
+            :is-full-page="true"
           />
           <v-btn
             v-bind:disabled="!btnEnabled"
@@ -63,11 +63,11 @@
 </template>
 
 <script>
-  import Loading from 'vue-loading-overlay';
-    import 'vue-loading-overlay/dist/vue-loading.css';
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 export default {
   components: {
-    Loading
+    Loading,
   },
   name: "Login",
   data() {

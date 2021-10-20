@@ -3,9 +3,21 @@ import clientes from "../../data/clientes";
 import axios from 'axios';
 
 const state = {
-  clientes: [],
+  clientes: [
+
+  ],
 };
 const mutations = {
+  'ADD_CLIENTE'(state,{cliente_id, cliente_nombre, fechaCorte, ultimaConexion, nuevaFechaCorte}){
+      const record = state.clientes.find(element => element.id == cliente_id);
+      state.clientes.push({
+        cliente_id: cliente_id,
+        cliente_nombre: cliente_nombre,
+        fechaCorte: fechaCorte,
+        ultimaConexion: ultimaConexion,
+        nuevaFechaCorte: nuevaFechaCorte,
+      });
+  },
   'SET_CLIENTES' (state, clientes) {
     state.clientes = clientes;
   },
@@ -28,13 +40,21 @@ const mutations = {
 
 const actions = {
   async initClientes({ commit }) {
-    let response = await axios.post("https://gestion-38ed2-default-rtdb.firebaseio.com/clientes.json", clientes.id);
-    commit("SET_CLIENTES", response.data);
+    console.log(clientes.id)
+   // let response = await axios.post("https://gestion-38ed2-default-rtdb.firebaseio.com/clientes.json", clientes.id);
+    commit("SET_CLIENTES", clientes);
   },
+  addCliente: ({commit}, agregar) => {
+    commit ('ADD_CLIENTE', agregar)
+  },
+ // initClientes: ({ commit })  => {
+ //  commit('SET_CLIENTES', clientes);
+ // },
   async getClientes({commit}){
  const res = await axios.get('https://gestion-38ed2-default-rtdb.firebaseio.com/clientes.json')
  commit('SET_CLIENTES',res.data)
   },
+  
   async agregarClientes ({ commit }) {
     let response = await axios.post("https://gestion-38ed2-default-rtdb.firebaseio.com/clientes.json", clientes.id);
     commit("AGREGAR_CLIENTES", response.data);
@@ -56,7 +76,7 @@ const actions = {
   
 };
 const getters = {
-  clientes : (state) => {
+  clientes : state => {
     return state.clientes
   }
 };
